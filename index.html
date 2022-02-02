@@ -317,7 +317,7 @@ Saving data...
           var blockDur = 2;     // sec เข้าใจว่าระยะห่างของเวลาการปิ้งแว้บขึ้นของแต่ละตัว (ยิ่งเยอะตัวปิ้งแว้บยิ่งน้อย)
           var changeRate = 0.75; // % changes 
           var nogoRate = 0.25;   // % nogo 
-          var dur = 250;        // stay up for ... msec เวลาที่ปิ๊งแว้บขึ้นมา (ms)
+          var dur = 200;        // stay up for ... msec เวลาที่ปิ๊งแว้บขึ้นมา (ms)
           var nBlock = Math.round(nsec/blockDur);  // number of blocks จำนวนการปิ้งแว้บทั้งหมด
           var jitDur = blockDur*1000-dur;   // jitter duration ระยะเวลาในการกด?
           var nNogo = Math.round(nBlock*changeRate*nogoRate);
@@ -429,21 +429,38 @@ Saving data...
               return timeDif;
           }
 
-
-          document.addEventListener('mousedown', pressMeHard);
+          let testingSpace = document.getElementById("myCanvas");
+          testingSpace.addEventListener('mousedown', pressMeHard);
           function pressMeHard(event){
+            inBound = event.target.id == 'myCanvas';
             Feedback();
-            // colorClick();
+            
           }
 
           function Feedback(){    
-            // Remove stimuli
-            setTimeout(function(){
-               erase(ctx1);
-               clear();
+              // Remove stimuli
+            // setTimeout(function(){
                makeButton();
                drawObjects(ctx1,objects);
-            },);
+               //erase(objects);
+               for (iSeq = 0;iSeq < nBlock; iSeq++){  
+                // beGone(timeJit[iSeq]);
+                beGone(dur);
+             }
+            // },)
+          }
+
+          function beGone(ms){
+            setTimeout(function(){
+                erase(ctx1);
+                clear();
+                makeButton(buttonColors[0],buttonShadow[0])
+                drawObjects(ctx1,objects);
+                // var dST = new Date();
+                // realstimtime.push(dST.getTime()-STT);
+                // var dST2 = new Date();
+                // ST2 = dST2.getTime();
+            },ms)
           }
 
           // document.addEventListener('mouseup', releaseMe);
@@ -529,7 +546,6 @@ Saving data...
                 erase(ctx1);
                 clear();
                 makeButton(color,shadow)
-                
                 drawObjects(ctx1,objects);
                 var dT = new Date();
                 STT=dT.getTime();
