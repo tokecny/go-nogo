@@ -19,6 +19,7 @@
       transform: translate(-50%, -50%);
       text-align: center;
       display: none;
+      font-size: 12pt;
     }
 
     body {
@@ -31,10 +32,23 @@
     }
 
     #instructions {
-      width: 60%;
+      width: 80%;
       margin: 0 auto;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 150px;
+      font-size: 14pt;
+    }
+
+    #consent {
+      width: 630px;
+      height: 150px; 
+      border: 1px solid #ccc;
+      font: 14px Arial, Helvetica; 
+      overflow: auto;
+      box-align: center;
+      margin-left: 400px;
+      margin-right: 400px;
+      margin-top: 20px;
     }
 
     #startExperiment {
@@ -53,7 +67,19 @@
       background: gray;
       padding: 5px;
       margin: 0 auto;
+      font-size: 12pt;
     }
+
+    #myCanvas{
+      width: 400;
+      height: 400;
+      margin-top: 80px;
+      /* cursor: default;
+      border: black;
+      outline-width: 2px;
+      outline-color: black; */
+    }
+
     .continueExp:hover{
       color: white;
     }
@@ -111,23 +137,24 @@ Saving data...
 
 <!-- make instruction -->
 <div id="instructions">
-  <h2> สวัสดีชาวโลก 
-    <br> ต่อไปเป็นการทดสอบการทำงานสมองของคุณ ช่วยพยายามกันหน่อยนะ</h2>
-  <p>เดี๋ยวจะมีวงกลมหลายวงโผล่ขึ้นมา <b>พยายามจำกันหน่อย</b> แล้วเดี๋ยวจะต้องตอบทีหลังนะ</p>
+  <h2> GO! NOGO! 
+    <br>เกมวัดความว่องไวและความแม่นยำในการตอบสนอง</h2>
+  <p>ต่อจากนี้จะมีวงกลมปรากฏขึ้นมา 
+  <br>ให้ท่าน <b>"กดลงบนปุ่ม"</b> เมื่อมี <b>สีเขียว</b> ปรากฏขึ้นมา และ <b>"ห้ามกดปุ่ม"</b> โดยเด็ดขาดเมื่อมี <b>สีแดง</b> ปรากฏขึ้นมา</p>
     
-  <p> <b> ถ้าอยากโดนก็กดขยายหน้าจอให้ใหญ่เบิ้มๆหน่อยนะ ขอสัก 400 pixels </b> 
-  <br> กด <b>F11</b> สิจ๊ะถ้าตัวเธอว์ใช้ windows
-  </p>
-  <p style="font:5px"> กดปุ่มยินยอมถ้าเธอว์พร้อมจะลุยมาตั้งนานแล้ว </p>
+  <p> ขอให้ท่านสำรวจสถานที่ที่ท่านอยู่ว่ามีสิ่งที่จะรบกวนสมาธิของท่านหรือไม่
+  <br>หากท่านอยู่ในสถานที่ที่พร้อมแล้ว
+  <br> กดปุ่ม <b>"เริ่ม"</b> เพื่อเข้าสู่การทดสอบ</p>
+</div>
   
   <div id="startExperimentButton">
-    <a href="#" id="startExperiment">เอาเลยเถอะ</a>
+    <a href="#" id="startExperiment">เริ่ม</a>
   </div>
+
+  <audio id="audio" src="click.mp3"></audio>
+  <audio id="click" src="click.mp3"></audio>
   
-  <p></p>
-
-
-  <div id="consent" style="height:120px; border:1px solid #ccc;font:12px Arial, Helvetica; overflow:auto" align="justify">
+  <div id="consent">
     <p align="center"><b>UNIVERSITY OF CALIFORNIA, SAN DIEGO
     <br>CONSENT TO ACT AS A RESEARCH SUBJECT</b>
 
@@ -166,63 +193,42 @@ Saving data...
   </div>
 </div>
 
-<!--
-//////////////////////////////////////////////////////////////////////////////////
--->
-<!-- set CANVAS -->
 <div align="center">
-    <canvas id="myCanvas"  width="400" height="400" style="cursor:default;border:none;outline-width:2px;outline-color:#000000">
+  <canvas id="myCanvas"  width="400" height="400" style="cursor:default;border:none;outline-width:2px;outline-color:#000000">
     </canvas>
     <p id="instr"></p>
 </div>
 
-<!--
-//////////////////////////////////////////////////////////////////////////////////
--->
-
 <div id='frame1'; class='trialDiv'>
-    <p> 
-    <br> อยากจะให้ทำอะไรสักอย่าง
-    <br> แต่ยังไม่แน่ใจ
-    <br>
-    <br>
+    <p> นี้คือปุ่มตามปกติก่อนที่จะมีสัญญาณไฟเขียวหรือไฟแดงปรากฏขึ้นมา
     <div class="continueButton">
-      <a href="#" id="cont1" class="continueExp"> ไปค่ะพี่สุชาติ </a>
+      <a href="#" id="cont1" class="continueExp"> ถัดไป </a>
     </div>
     
 </div>
 
 <div id='frame2'; class='trialDiv'>
-    <p> 
-    <br> อะไรจะโผล่มาแบบนี้
-    <br> พยายามจำตำแหน่งเอาไว้
-
+    <p> เมื่อสัญญาณไฟ<b>สีเขียว</b>ปรากฏขึ้น ให้ท่าน <b>"กดบนปุ่ม"</b> ให้เร็วที่สุดเท่าที่จะทำได้
     <div class="continueButton">
-      <a href="#" id="cont2" class="continueExp"> ไปค่ะพี่สุชาติ </a>
+      <a href="#" id="cont2" class="continueExp"> ถัดไป </a>
     </div>
 </div>
 
 <div id='frame3'; class='trialDiv'>
-    <p> 
-    <br> แล้วก็จะหายไป
-    <br>
-
+    <p> ท่านต้องระวัง <b>"ห้ามกดปุ่ม"</b> หากสัญญาณไฟ<b>สีแดง</b>ปรากฏขึ้น 
     <div class="continueButton">
-      <a href="#" id="cont3" class="continueExp"> ไปค่ะพี่สุชาติ </a>
+      <a href="#" id="cont3" class="continueExp"> ถัดไป </a>
     </div>
 </div>
 
 <div id='frame4'; class='trialDiv'>
-    <p> 
-    <br> พอมีสัญญาณให้ตอบก็ตอบได้เลย
-    <br> กดลงไปบนกลมๆที่มองเห็นได้เลยเพื่อตอบ 
-
+    <p> หากท่านเข้าใจแล้ว ให้กดปุ่ม <b>"เข้าสู่การทดสอบ"</b> เพื่อเริ่มการทดสอบ
     <div class="continueButton">
-      <a href="#" id="cont4" class="continueExp"> ไปค่ะพี่สุชาติ </a>
+      <a href="#" id="cont4" class="continueExp"> เข้าสู่การทดสอบ </a>
     </div>
 </div>
 
-<div id='frame5'; class='trialDiv'>
+<!-- <div id='frame5'; class='trialDiv'>
     <p> 
     <br> จะเป็นเช่นนี้ไปเรื่อยๆ 
     <br> พร้อมไหม
@@ -245,11 +251,7 @@ Saving data...
     <br> ให้กดปุ่มย้อนกลับจากลำดับที่จำไว้
     <br> 
     <br> <br> กรุณาใช้ <b>เมาส์</b> กดลงบนปุ่ม </p>
-</div>
-
-<!--
-//////////////////////////////////////////////////////////////////////////////////
--->
+</div>  -->
 
 <p id="debug"></p>
         <form id="record" action="examplePause.php" name="nextpage" method="post">
@@ -261,486 +263,492 @@ Saving data...
         </form>
 
 
-        <script type="text/javascript">
-          
-          // Settings
-          var code = "CC" + Math.round(Math.random()*100000) + "92";
-          // var task='Simon';
-          var c1=document.getElementById("myCanvas");
-          var ctx1=c1.getContext("2d");   
-          var centerX=c1.width/2;
-          var centerY=c1.height/2;   
-          // var width=c1.width;
-          // var height=c1.height;
-          // var objSize= 100; 
-          // var objDist= 120;
-          //var visualang = Math.round((Math.atan(((objSize))/objDist))*(180/Math.PI));
-          // var wheelRad=objSize+objDist+30;
-          // var nubX=null;
-          // var nubY=null;
-          // var nTrials = 5;
-          // var numDots=6;
-          // var thetadiff = 360/numDots;
-          // var nSeq = 4;
-          // var circRot= 0;
-          // var colRot= 0;
+<script type="text/javascript">
+      
+    // Settings
+    var code = "CC" + Math.round(Math.random()*100000) + "92";
+    // var task='Simon';
+    var c1=document.getElementById("myCanvas");
+    var ctx1=c1.getContext("2d");   
+    var centerX=c1.width/2;
+    var centerY=c1.height/2;   
+    // var width=c1.width;
+    // var height=c1.height;
+    // var objSize= 100; 
+    // var objDist= 120;
+    //var visualang = Math.round((Math.atan(((objSize))/objDist))*(180/Math.PI));
+    // var wheelRad=objSize+objDist+30;
+    // var nubX=null;
+    // var nubY=null;
+    // var nTrials = 5;
+    // var numDots=6;
+    // var thetadiff = 360/numDots;
+    // var nSeq = 4;
+    // var circRot= 0;
+    // var colRot= 0;
 
-          //var nullcolor = []; for (var idot =0; idot<numDots;idot++){nullcolor[idot] = '#FFFFFF'}
-          // const testtemp = []; for (var idot =0; idot<numDots;idot++){testtemp[idot] = 99999}
+    //var nullcolor = []; for (var idot =0; idot<numDots;idot++){nullcolor[idot] = '#FFFFFF'}
+    // const testtemp = []; for (var idot =0; idot<numDots;idot++){testtemp[idot] = 99999}
 
-          // var stimdur = 500;
-          // var delay = 500;
+    // var stimdur = 500;
+    // var delay = 500;
 
-          var rt=[];
-          var moveLast=0; // vismen error
-          
-          // var initTime=3000;
-          // var presTime=1000;
-          // var delayTime=1000;
-          // var feedbacktime=1000;
-          var buttonColors =['#FFFFFF','#73FA78','#FF9E98'];
-          var buttonShadow = [5,5,5];
-          var buttonShadow2 = 5;
-          // var buttonClickColor = '#FFFFFFFF';
-          // var buttonShadowOnClick = 2;
+    var rt=[];
+    var moveLast=0; // vismen error
+    
+    // var initTime=3000;
+    // var presTime=1000;
+    // var delayTime=1000;
+    // var feedbacktime=1000;
+    var buttonColors =['#FFFFFF','#73FA78','#FF9E98'];
+    var buttonShadow = [5,5,5];
+    var buttonShadow2 = 5;
+    var beepSound = 'audio';
+    // var buttonClickColor = '#FFFFFFFF';
+    // var buttonShadowOnClick = 2;
 
-          // var bgcolor = ["#f1959b","#8abaae"];
-          // var bgx = Math.round(Math.random());
-          var isTest=false; // vismen error
-          var isTrain = false; // vismen error
-          var currProbe=-1; // vismen error
-          var curTrial = 0;
-          var realstimtime =[]; 
-          // var realdelaytime =[];
+    // var bgcolor = ["#f1959b","#8abaae"];
+    // var bgx = Math.round(Math.random());
+    var isTest=false; // vismen error
+    var isTrain = false; // vismen error
+    var currProbe=-1; // vismen error
+    var curTrial = 0;
+    var realstimtime =[]; 
+    // var realdelaytime =[];
 
-          var nsec = 300;        // duration sec เวลาทั้งหมดในการเล่น (s)
-          var blockDur = 2;     // sec เข้าใจว่าระยะห่างของเวลาการปิ้งแว้บขึ้นของแต่ละตัว (ยิ่งเยอะตัวปิ้งแว้บยิ่งน้อย)
-          var changeRate = 0.75; // % changes 
-          var nogoRate = 0.25;   // % nogo 
-          var dur = 200;        // stay up for ... msec เวลาที่ปิ๊งแว้บขึ้นมา (ms)
-          var nBlock = Math.round(nsec/blockDur);  // number of blocks จำนวนการปิ้งแว้บทั้งหมด
-          var jitDur = blockDur*1000-dur;   // jitter duration ระยะเวลาในการกด?
-          var nNogo = Math.round(nBlock*changeRate*nogoRate);
-          var nGo = Math.round(nBlock*changeRate*(1-nogoRate));
-          var nNochange = nBlock-nGo-nNogo;
+    var nsec = 300;        // duration sec เวลาทั้งหมดในการเล่น (s)
+    var blockDur = 1;     // sec เข้าใจว่าระยะห่างของเวลาการปิ้งแว้บขึ้นของแต่ละตัว (ยิ่งเยอะตัวปิ้งแว้บยิ่งน้อย)
+    var changeRate = 0.75; // % changes 
+    var nogoRate = 0.25;   // % nogo 
+    var dur = 200;        // stay up for ... msec เวลาที่ปิ๊งแว้บขึ้นมา (ms)
+    var nBlock = Math.round(nsec/blockDur);  // number of blocks จำนวนการปิ้งแว้บทั้งหมด
+    var jitDur = blockDur*1000-dur;   // jitter duration ระยะเวลาในการกด?
+    var nNogo = Math.round(nBlock*changeRate*nogoRate);
+    var nGo = Math.round(nBlock*changeRate*(1-nogoRate));
+    var nNochange = nBlock-nGo-nNogo;
 
-          var timeVec = []; for (var idot =0; idot<nsec;idot++){timeVec[idot] = idot*blockDur*1000}
-          var jitters = []; for (var idot =0; idot<nsec;idot++){jitters[idot] = Math.random()*jitDur}
-          var timeJit = []; for (var idot =0; idot<nsec;idot++){timeJit[idot] = timeVec[idot]+jitters[idot]}
-          var tempevent = []; 
-          for (var i2 = 0; i2<nNogo; i2++){tempevent.push(2)}
-          for (var i1 = 0; i1<nGo; i1++){tempevent.push(1)}
-          for (var i0 = 0; i0<(nNochange-1); i0++){tempevent.push(0)}
-          Shuffle(tempevent)
-          eventId = [0];
-          eventId = eventId.concat(tempevent)
+    var timeVec = []; for (var idot =0; idot<nsec;idot++){timeVec[idot] = idot*blockDur*1000}
+    var jitters = []; for (var idot =0; idot<nsec;idot++){jitters[idot] = Math.random()*jitDur}
+    var timeJit = []; for (var idot =0; idot<nsec;idot++){timeJit[idot] = timeVec[idot]+jitters[idot]}
+    var tempevent = []; 
+    for (var i2 = 0; i2<nNogo; i2++){tempevent.push(2)}
+    for (var i1 = 0; i1<nGo; i1++){tempevent.push(1)}
+    for (var i0 = 0; i0<(nNochange-1); i0++){tempevent.push(0)}
+    Shuffle(tempevent)
+    eventId = [0];
+    eventId = eventId.concat(tempevent)
 
-          // Object positions
-          
-          // Define positions before rotation
-          // xTemp=[];
-          // yTemp=[];
-          // var theta = [];
-          // for(i=0;i<numDots;i++){
-          //    theta.push(Math.round(( ((2*Math.PI/numDots)*i))*(180/Math.PI)))
-          //    xTemp.push(objDist*Math.cos((2*Math.PI/numDots)*i));
-          //    yTemp.push(objDist*Math.sin((2*Math.PI/numDots)*i))
-          //}
+    // Object positions
+    
+    // Define positions before rotation
+    // xTemp=[];
+    // yTemp=[];
+    // var theta = [];
+    // for(i=0;i<numDots;i++){
+    //    theta.push(Math.round(( ((2*Math.PI/numDots)*i))*(180/Math.PI)))
+    //    xTemp.push(objDist*Math.cos((2*Math.PI/numDots)*i));
+    //    yTemp.push(objDist*Math.sin((2*Math.PI/numDots)*i))
+    //}
 
-          // Rotate positions
-          // xPos=[];
-          // yPos=[];
-          
-          //for(i=0;i<numDots;i++){
-          //    xPos.push(centerX-(Math.cos(circRot)*xTemp[i])+(Math.sin(circRot)*yTemp[i]));
-          //    yPos.push(centerY+(Math.sin(circRot)*xTemp[i])+(Math.cos(circRot)*yTemp[i]))
-          //}
+    // Rotate positions
+    // xPos=[];
+    // yPos=[];
+    
+    //for(i=0;i<numDots;i++){
+    //    xPos.push(centerX-(Math.cos(circRot)*xTemp[i])+(Math.sin(circRot)*yTemp[i]));
+    //    yPos.push(centerY+(Math.sin(circRot)*xTemp[i])+(Math.cos(circRot)*yTemp[i]))
+    //}
 
-          //function shuffle(array) {
-          //  var currentIndex = array.length, temporaryValue, randomIndex;
+    //function shuffle(array) {
+    //  var currentIndex = array.length, temporaryValue, randomIndex;
 
-            // While there remain elements to shuffle...
-          //  while (0 !== currentIndex) {
+      // While there remain elements to shuffle...
+    //  while (0 !== currentIndex) {
 
-              // Pick a remaining element...
-          //    randomIndex = Math.floor(Math.random() * currentIndex);
-          //    currentIndex -= 1;
+        // Pick a remaining element...
+    //    randomIndex = Math.floor(Math.random() * currentIndex);
+    //    currentIndex -= 1;
 
-              // And swap it with the current element.
-          //    temporaryValue = array[currentIndex];
-          //    array[currentIndex] = array[randomIndex];
-          //    array[randomIndex] = temporaryValue;
-          //  }
-          //  return array;
-          // }
+        // And swap it with the current element.
+    //    temporaryValue = array[currentIndex];
+    //    array[currentIndex] = array[randomIndex];
+    //    array[randomIndex] = temporaryValue;
+    //  }
+    //  return array;
+    // }
 
-          // function paintcolor(colAng){
-          //   var color=[];
-          //   for(ic=0;ic<colAng.length;ic++){
-          //      if (colAng[ic] == 99999){
-          //          color[ic]='#FFFFFF'
-          //      }else{
-          //          color[ic]=angle2HEX(colAng[ic])
-          //     }
-          //  }
-          //  return color 
-          // }
+    // function paintcolor(colAng){
+    //   var color=[];
+    //   for(ic=0;ic<colAng.length;ic++){
+    //      if (colAng[ic] == 99999){
+    //          color[ic]='#FFFFFF'
+    //      }else{
+    //          color[ic]=angle2HEX(colAng[ic])
+    //     }
+    //  }
+    //  return color 
+    // }
 
-          // function makeCircles(currColor){
-            // Draw circles
+    // function makeCircles(currColor){
+      // Draw circles
 
-          //   for(i=0;i<numDots;i++){
-          //      makeCircle('dot'+i,xPos[i],yPos[i],objSize+2,false,0,'#000000','#000000');
-          //      makeCircle('dotIn'+i,xPos[i],yPos[i],objSize,false,0,currColor[i],currColor[i]);
-          //      // makeCircle('dotIn'+i,xPos[i],yPos[i],objSize,false,0,currColor[i],currColor[i]);
-          //  }
-          // }
+    //   for(i=0;i<numDots;i++){
+    //      makeCircle('dot'+i,xPos[i],yPos[i],objSize+2,false,0,'#000000','#000000');
+    //      makeCircle('dotIn'+i,xPos[i],yPos[i],objSize,false,0,currColor[i],currColor[i]);
+    //      // makeCircle('dotIn'+i,xPos[i],yPos[i],objSize,false,0,currColor[i],currColor[i]);
+    //  }
+    // }
 
-           function makeButton(buttonColor,buttonShadow){
-                makeCircle('button',centerX,centerY,150+buttonShadow2,false,12,'#FFFFFF','#000000');
-                makeCircle('button',centerX,centerY,150,false,0,'#C4C4C4','#C4C4C4');
-                makeCircle('button',centerX+2,centerY+buttonShadow,100,false,0,'#000000','#C4C4C4');   
-                makeCircle('button',centerX,centerY,100,false,0,buttonColor,buttonColor);
-          }
+    function makeButton(buttonColor,buttonShadow){
+      makeCircle('button',centerX,centerY,150+buttonShadow2,false,12,'#FFFFFF','#000000');
+      makeCircle('button',centerX,centerY,150,false,0,'#C4C4C4','#C4C4C4');
+      makeCircle('button',centerX+2,centerY+buttonShadow,100,false,0,'#000000','#C4C4C4');   
+      makeCircle('button',centerX,centerY,100,false,0,buttonColor,buttonColor);
+    }
 
-          // function makeBackground(bgcolor){
-            // Fill background
-            //    makeRectangle('bg',centerX,centerX,400,400,false,bgcolor,bgcolor);
-             
-          //}
+    // function makeBackground(bgcolor){
+      // Fill background
+      //    makeRectangle('bg',centerX,centerX,400,400,false,bgcolor,bgcolor);
+        
+    //}
 
-          // function makeCrosshair(){
-            // Draw rectangles
-            // for(i=0;i<numDots;i++){
-            //    makeRectangle('cross1',centerX,centerX,2,10,false,'#000000','#000000');
-            //    makeRectangle('cross2',centerX,centerY,10,2,false,'#000000','#000000');
-            //}
-          // }
+    // function makeCrosshair(){
+      // Draw rectangles
+      // for(i=0;i<numDots;i++){
+      //    makeRectangle('cross1',centerX,centerX,2,10,false,'#000000','#000000');
+      //    makeRectangle('cross2',centerX,centerY,10,2,false,'#000000','#000000');
+      //}
+    // }
 
-           var st=null; // vismen prob
-           function startTime(){
-              var d = new Date();
-              st=d.getTime();
-          }
+      var st=null; // vismen prob
+      function startTime(){
+        var d = new Date();
+        st=d.getTime();
+    }
 
-           function endTime(){ // vismen prob
-              var d = new Date();
-              timeDif=d.getTime()-st;
-              return timeDif;
-          }
+    function endTime(){ // vismen prob
+        var d = new Date();
+        timeDif=d.getTime()-st;
+        return timeDif;
+    }
 
-          let testingSpace = document.getElementById("myCanvas");
-          testingSpace.addEventListener('mousedown', pressMeHard);
-          function pressMeHard(event){
-            inBound = event.target.id == 'myCanvas';
-            Feedback();
-            
-          }
+    let testingSpace = document.getElementById("myCanvas");
+    testingSpace.addEventListener('mousedown', pressMeHard);
+    function pressMeHard(event){
+      var beepSound = document.getElementById("audio");
+      beepSound.play();
+      // inBound = event.target.id == 'myCanvas';
+      Feedback();
+      
+    }
 
-          function Feedback(){    
-              // Remove stimuli
-            // setTimeout(function(){
-               makeButton();
-               drawObjects(ctx1,objects);
-               //erase(objects);
-               for (iSeq = 0;iSeq < nBlock; iSeq++){  
-                // beGone(timeJit[iSeq]);
-                beGone(dur);
-             }
-            // },)
-          }
+    function Feedback(){    
+        // Remove stimuli
+      // setTimeout(function(){
+          makeButton();
+          drawObjects(ctx1,objects);
+          //erase(objects);
+          for (iSeq = 0;iSeq < nBlock; iSeq++){  
+          // beGone(timeJit[iSeq]);
+          beGone(dur);
+        }
+      // },)
+    }
 
-          function beGone(ms){
-            setTimeout(function(){
-                erase(ctx1);
-                clear();
-                makeButton(buttonColors[0],buttonShadow[0])
-                drawObjects(ctx1,objects);
-                // var dST = new Date();
-                // realstimtime.push(dST.getTime()-STT);
-                // var dST2 = new Date();
-                // ST2 = dST2.getTime();
-            },ms)
-          }
+    function beGone(ms){
+      setTimeout(function(){
+          erase(ctx1);
+          clear();
+          makeButton(buttonColors[0],buttonShadow[0])
+          drawObjects(ctx1,objects);
+          // var dST = new Date();
+          // realstimtime.push(dST.getTime()-STT);
+          // var dST2 = new Date();
+          // ST2 = dST2.getTime();
+      },ms)
+    }
 
-          // document.addEventListener('mouseup', releaseMe);
-          // function releaseMe(event){
-            //  colorClickOut();
-          // }
+    // document.addEventListener('mouseup', releaseMe);
+    // function releaseMe(event){
+      //  colorClickOut();
+    // }
 
-          // function colorClick (color,shadow){
-          //   makeButton();
-          //   drawObjects(ctx1,objects);
-          // }
+    // function colorClick (color,shadow){
+    //   makeButton();
+    //   drawObjects(ctx1,objects);
+    // }
 
-          // function colorClickOut (color,shadow){
-            // clear(colorClick);
-          // }
-          
-          function trialIsOver() {
-              
-              // Initial
-              erase(ctx1);
-              clear();
-              drawObjects(ctx1,objects);
-              $('#rule0').hide();
-              $('#rule1').hide();
-              // var curtrialStruct = {};
-              
-              // curtrialStruct.colordist = colordist;
-              // curtrialStruct.stimdur = stimdur;
-              // curtrialStruct.delaytime = alltrldel[curTrial];
-              // curtrialStruct.targcol = alltrlseq[curTrial];
-              // curtrialStruct.testpos = alltstpos[curTrial];
-              // curtrialStruct.trlrot = alltrlrot[curTrial];
-              // curtrialStruct.colorwrot = allcolorwrot[curTrial];
-              // curtrialStruct.tarcode = alltarcode[curTrial];
-              // curtrialStruct.resp = allselCol[curTrial];
-              // curtrialStruct.respAng = allcolAng[curTrial];
-              // curtrialStruct.rt = rt[curTrial];
-              // curtrialStruct.realstim = realstimtime[curTrial];
-              // curtrialStruct.delaytimeReal = realdelaytime[curTrial];
-              // trialStruct.push(curtrialStruct);
-
-
-              // document.getElementById('targ').value=JSON.stringify(color);
-              // document.getElementById('resp').value=JSON.stringify(selColor);
-              // document.getElementById('respAng').value=JSON.stringify(selAng);
-              // document.getElementById('targAng').value=JSON.stringify(targAng);
-              // document.getElementById('rt').value=JSON.stringify(rt);
-
-              // curTrial = curTrial+1 ; 
-
-              if (nsec == 300){
-                  Done();
-                  // $('#submitButton'.show());
-              } else {
-                  // var selColor=[];var selAng=[];
-                  // for (var item=0;item<numDots;item++){selColor[item]='#FFFFFF';selAng[item]=null};
-                  // $('#rule0').hide();
-                  // $('#rule1').hide();
-                  showTrial(curTrial);
-                  startTrialTime = new Date();
-              }
-
-          }
-
-          function showTrial(){
-             // isTest= false;
-             
-             erase(ctx1);
-             clear();
-             
-             makeButton(buttonColors[0],buttonShadow[0])
-             drawObjects(ctx1,objects);
-             for (iSeq=0;iSeq < nBlock; iSeq++){  
-                initialT(timeJit[iSeq],buttonColors[eventId[iSeq]],buttonShadow[eventId[iSeq]]);
-                RemoveStim(timeJit[iSeq]+dur);
-             }
-          }
-
-          function initialT(waittime,color,shadow){
-            // Initial
-            setTimeout(function(){
-                // Draw stimuli
-                erase(ctx1);
-                clear();
-                makeButton(color,shadow)
-                drawObjects(ctx1,objects);
-                var dT = new Date();
-                STT=dT.getTime();
-            },waittime);
-          }
-            
-
-          function RemoveStim(waittime2){    
-            // Remove stimuli
-            setTimeout(function(){
-                erase(ctx1);
-                clear();
-                makeButton(buttonColors[0],buttonShadow[0])
-                drawObjects(ctx1,objects);
-                var dST = new Date();
-                realstimtime.push(dST.getTime()-STT);
-                var dST2 = new Date();
-                ST2 = dST2.getTime();
-            },waittime2);
-          }
+    // function colorClickOut (color,shadow){
+      // clear(colorClick);
+    // }
+    
+    function trialIsOver() {
+        
+        // Initial
+        erase(ctx1);
+        clear();
+        drawObjects(ctx1,objects);
+        $('#rule0').hide();
+        $('#rule1').hide();
+        // var curtrialStruct = {};
+        
+        // curtrialStruct.colordist = colordist;
+        // curtrialStruct.stimdur = stimdur;
+        // curtrialStruct.delaytime = alltrldel[curTrial];
+        // curtrialStruct.targcol = alltrlseq[curTrial];
+        // curtrialStruct.testpos = alltstpos[curTrial];
+        // curtrialStruct.trlrot = alltrlrot[curTrial];
+        // curtrialStruct.colorwrot = allcolorwrot[curTrial];
+        // curtrialStruct.tarcode = alltarcode[curTrial];
+        // curtrialStruct.resp = allselCol[curTrial];
+        // curtrialStruct.respAng = allcolAng[curTrial];
+        // curtrialStruct.rt = rt[curTrial];
+        // curtrialStruct.realstim = realstimtime[curTrial];
+        // curtrialStruct.delaytimeReal = realdelaytime[curTrial];
+        // trialStruct.push(curtrialStruct);
 
 
-        //   function Cue(waittime3){
-        //     //  Cue
-        //      setTimeout(function(){
-        //         var dST3 = new Date();
-        //         realdelaytime.push(dST3.getTime()-ST2);
-        //         erase(ctx1);
-        //         clear();
-                
-        //         currProbe=0;
-        //         moveLast = 0 ;
-        //         makeBackground(bgcolor[bgx])
-        //         makeCircles(nullcolor);
-        //         makeCrosshair();
-        //         drawObjects(ctx1,objects);
-                
-                
-        //         startTime();
-        //         console.log('now!')
-        //         isTest=true;
-        //      },waittime3);
-        // }
+        // document.getElementById('targ').value=JSON.stringify(color);
+        // document.getElementById('resp').value=JSON.stringify(selColor);
+        // document.getElementById('respAng').value=JSON.stringify(selAng);
+        // document.getElementById('targAng').value=JSON.stringify(targAng);
+        // document.getElementById('rt').value=JSON.stringify(rt);
 
-        function showFirstTrial() {
-            // isTrain = false;
+        // curTrial = curTrial+1 ; 
 
-
-            // Draw first fixation 
-            // makeCrosshair();
-            // drawObjects(ctx1,objects);
-
-            // Begin
-            $('#frame5').hide();
-            showTrial();
+        if (nsec == 300){
+            Done();
+            // $('#submitButton'.show());
+        } else {
+            // var selColor=[];var selAng=[];
+            // for (var item=0;item<numDots;item++){selColor[item]='#FFFFFF';selAng[item]=null};
+            // $('#rule0').hide();
+            // $('#rule1').hide();
+            showTrial(curTrial);
             startTrialTime = new Date();
-            // $('.trialDiv').hide();
         }
 
-        function showPractice_f1(){
-            if ($(window).width() >= 400 && screen.width*.3 < $(window).width()){
-                $('#instructions').hide();
-                myCanvas.style.border = 'solid' 
-                 // Draw first button
-                makeButton(buttonColors[0],buttonShadow[0]);
-                drawObjects(ctx1,objects);
-                $('#frame1').show();
-                // Begin
-                $('#cont1').on('click',pressed);
-                function pressed(){
-                  showPractice_f2();
-                }
-            }
+    }
 
+    function showTrial(){
+        // isTest= false;
+        
+        erase(ctx1);
+        clear();
+        
+        makeButton(buttonColors[0],buttonShadow[0])
+        drawObjects(ctx1,objects);
+        for (iSeq=0;iSeq < nBlock; iSeq++){  
+          initialT(timeJit[iSeq],buttonColors[eventId[iSeq]],buttonShadow[eventId[iSeq]]);
+          RemoveStim(timeJit[iSeq]+dur);
         }
+    }
 
-        function showPractice_f2(){
-            $('#frame1').hide();
-            makeButton(buttonColors[1],buttonShadow[0]);
-            drawObjects(ctx1,objects);
-            $('#frame2').show();
-            $('#cont2').click(showPractice_f3);
-        }
+    function initialT(waittime,color,shadow){
+      // Initial
+      setTimeout(function(){
+          // Draw stimuli
+          erase(ctx1);
+          clear();
+          makeButton(color,shadow)
+          drawObjects(ctx1,objects);
+          var dT = new Date();
+          STT=dT.getTime();
+      },waittime);
+    }
+      
+    function RemoveStim(waittime2){    
+      // Remove stimuli
+      setTimeout(function(){
+          erase(ctx1);
+          clear();
+          makeButton(buttonColors[0],buttonShadow[0])
+          drawObjects(ctx1,objects);
+          var dST = new Date();
+          realstimtime.push(dST.getTime()-STT);
+          var dST2 = new Date();
+          ST2 = dST2.getTime();
+      },waittime2);
+    }
 
-        function showPractice_f3(){
-            $('#frame2').hide();
-            makeButton(buttonColors[2],buttonShadow[0]);
-            drawObjects(ctx1,objects);
-            $('#frame3').show();
-            $('#cont3').click(showPractice_f4);
-        }
+    //   function Cue(waittime3){
+    //     //  Cue
+    //      setTimeout(function(){
+    //         var dST3 = new Date();
+    //         realdelaytime.push(dST3.getTime()-ST2);
+    //         erase(ctx1);
+    //         clear();
+            
+    //         currProbe=0;
+    //         moveLast = 0 ;
+    //         makeBackground(bgcolor[bgx])
+    //         makeCircles(nullcolor);
+    //         makeCrosshair();
+    //         drawObjects(ctx1,objects);
+            
+            
+    //         startTime();
+    //         console.log('now!')
+    //         isTest=true;
+    //      },waittime3);
+    // }
 
-        function showPractice_f4(){
+    function showFirstTrial() {
+        // isTrain = false;
 
-                // isTrain = true;
-                // console.log(order)
-                $('#frame3').hide();
-                makeButton(buttonColors[0],buttonShadow[0]);
-                drawObjects(ctx1,objects);
-                
-                $('#frame4').show();
-                $('#cont4').click(showPractice_f5);
-        }
 
-        function showPractice_f5(){
-             
-            $('#frame4').hide();
-            erase(ctx1);
-            clear();
+        // Draw first fixation 
+        // makeCrosshair();
+        // drawObjects(ctx1,objects);
+
+        // Begin
+        $('#frame4').hide();
+        showTrial();
+        startTrialTime = new Date();
+        // $('.trialDiv').hide();
+    }
+
+    function showPractice_f1(){
+        if ($(window).width() >= 600 && screen.width*0.8 < $(window).width()){
+            $('#instructions').hide();
+            myCanvas.style.border = 'solid' 
+              // Draw first button
             makeButton(buttonColors[0],buttonShadow[0]);
             drawObjects(ctx1,objects);
-            $('#frame5').show();
-            $('#cont5').click(showFirstTrial);
+            $('#startExperimentButton').hide();
+            $('#consent').hide();
+            $('#frame1').show();
+            // Begin
+            $('#cont1').on('click',pressed);
+            function pressed(){
+              showPractice_f2();
+            }
         }
 
-        function Done() {
+    }
 
-            $("#myCanvas").hide();
-              $("#done").show();
+    function showPractice_f2(){
+        $('#frame1').hide();
+        makeButton(buttonColors[1],buttonShadow[0]);
+        drawObjects(ctx1,objects);
+        $('#frame2').show();
+        $('#cont2').click(showPractice_f3);
+    }
 
-              var dataToServer = {};
-              dataToServer.id = getParameterByName("subjectId"); /* getParameterByName("code") */
-              dataToServer.experimenter = 'Chaipat';
-              dataToServer.experimentName = 'WMcolordist_delay';
-              // dataToServer.curData = JSON.stringify(trialStruct);
-              $.post("https://psyc241.ucsd.edu/Turk/save.php", dataToServer, AfterSuccessDataSaving).fail(AfterFailedSaving);
-        }
+    function showPractice_f3(){
+        $('#frame2').hide();
+        makeButton(buttonColors[2],buttonShadow[0]);
+        drawObjects(ctx1,objects);
+        // erase(ctx1);
+        // clear();
+        // makeButton(buttonColors[0],buttonShadow[0]);
+        // drawObjects(ctx1,objects);
+        $('#frame3').show();
+        $('#cont3').click(showPractice_f4);
+    }
 
-        function AfterSuccessDataSaving() {
-          // After they are done, send them here:
-          // window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=1267&credit_token=805f6634de5a46b3aecffe2818d8d90c&survey_code=" + getParameterByName("code");
-          $('#submitButton').show();
-          $('#done').html("All done, thanks! Please click submit button.");
+    function showPractice_f4(){
+
+            // isTrain = true;
+            // console.log(order)
+            $('#frame3').hide();
+            makeButton(buttonColors[0],buttonShadow[0]);
+            drawObjects(ctx1,objects);
+            
+            $('#frame4').show();
+            $('#cont4').click(showFirstTrial);
+    }
+
+    // function showPractice_f5(){
           
-          console.log("Saved!");
-        }
+    //     $('#frame4').hide();
+    //     erase(ctx1);
+    //     clear();
+    //     makeButton(buttonColors[0],buttonShadow[0]);
+    //     drawObjects(ctx1,objects);
+    //     $('#frame5').show();
+    //     $('#cont5').click(showFirstTrial);
+    // }
 
-        function AfterFailedSaving() {
-          console.log("oops, failed to save");
+    function Done() {
 
-          // window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=1267&credit_token=805f6634de5a46b3aecffe2818d8d90c&survey_code=" + getParameterByName("code");  
-          $('#submitButton').show();
-          $('#done').html("All done, thanks! Please click submit button.");
+        $("#myCanvas").hide();
+          $("#done").show();
 
-        }
+          var dataToServer = {};
+          dataToServer.id = getParameterByName("subjectId"); /* getParameterByName("code") */
+          dataToServer.experimenter = 'Chaipat';
+          dataToServer.experimentName = 'WMcolordist_delay';
+          // dataToServer.curData = JSON.stringify(trialStruct);
+          $.post("https://psyc241.ucsd.edu/Turk/save.php", dataToServer, AfterSuccessDataSaving).fail(AfterFailedSaving);
+    }
 
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
+    function AfterSuccessDataSaving() {
+      // After they are done, send them here:
+      // window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=1267&credit_token=805f6634de5a46b3aecffe2818d8d90c&survey_code=" + getParameterByName("code");
+      $('#submitButton').show();
+      $('#done').html("All done, thanks! Please click submit button.");
+      
+      console.log("Saved!");
+    }
+
+    function AfterFailedSaving() {
+      console.log("oops, failed to save");
+
+      // window.location = "https://ucsd.sona-systems.com/webstudy_credit.aspx?experiment_id=1267&credit_token=805f6634de5a46b3aecffe2818d8d90c&survey_code=" + getParameterByName("code");  
+      $('#submitButton').show();
+      $('#done').html("All done, thanks! Please click submit button.");
+
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
 
-        // ========================================================= 
-        $('#startExperiment').click(showPractice_f1);
-        $('.responseButton').click(trialIsOver);
-        // =========================================================
+    // ========================================================= 
+    $('#startExperiment').click(showPractice_f1);
+    $('.responseButton').click(trialIsOver);
+    // =========================================================
 
-        /**
-         * Gets a URL parameter from the query string
-         */
-        function turkGetParam( name, defaultValue ) { 
-           var regexS = "[\?&]"+name+"=([^&#]*)"; 
-           var regex = new RegExp( regexS ); 
-           var tmpURL = window.location.href; 
-           var results = regex.exec( tmpURL ); 
-           if( results == null ) { 
-             return defaultValue; 
-           } else { 
-             return results[1];    
-           } 
-        }
-
-        function GetWorkerId() {
-          var workerId = turkGetParam( 'workerId', 'NONE' );
-          return workerId;
+    /**
+      * Gets a URL parameter from the query string
+      */
+    function turkGetParam( name, defaultValue ) { 
+        var regexS = "[\?&]"+name+"=([^&#]*)"; 
+        var regex = new RegExp( regexS ); 
+        var tmpURL = window.location.href; 
+        var results = regex.exec( tmpURL ); 
+        if( results == null ) { 
+          return defaultValue; 
+        } else { 
+          return results[1];    
         } 
+    }
 
-        function IsTurkPreview() {
-          return GetWorkerId() == "NONE";
-        } 
+    function GetWorkerId() {
+      var workerId = turkGetParam( 'workerId', 'NONE' );
+      return workerId;
+    } 
 
-        function IsOnTurk() {
-          try {
-            return ((window.location.host.indexOf('mturk')!=-1) || document.forms["mturk_form"] ||
-              (top != self && window.parent.location.host.indexOf("mturk") != -1));
-          } catch(err) {
-            // insecure content trying to access https://turk probably, so say yes:
-            return true;
-          }
-        }
-        </script>
+    function IsTurkPreview() {
+      return GetWorkerId() == "NONE";
+    } 
 
+    function IsOnTurk() {
+      try {
+        return ((window.location.host.indexOf('mturk')!=-1) || document.forms["mturk_form"] ||
+          (top != self && window.parent.location.host.indexOf("mturk") != -1));
+      } catch(err) {
+        // insecure content trying to access https://turk probably, so say yes:
+        return true;
+      }
+    }
+</script>
 
