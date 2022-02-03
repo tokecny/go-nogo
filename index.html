@@ -40,15 +40,12 @@
     }
 
     #consent {
-      width: 630px;
-      height: 150px; 
-      border: 1px solid #ccc;
-      font: 14px Arial, Helvetica; 
-      overflow: auto;
-      box-align: center;
-      margin-left: 400px;
-      margin-right: 400px;
       margin-top: 20px;
+      margin-left: 300px;
+      margin-right: 300px;
+      height: 150px;
+      border: 2px solid rgb(109, 108, 108);
+      overflow: scroll;
     }
 
     #startExperiment {
@@ -74,18 +71,24 @@
       width: 400;
       height: 400;
       margin-top: 80px;
-      /* cursor: default;
-      border: black;
+      cursor: default;
+      border: rgb(255, 255, 255);
       outline-width: 2px;
-      outline-color: black; */
+      outline-color: rgb(255, 255, 255);
     }
 
     .continueExp:hover{
-      color: white;
+      color: rgb(255, 255, 255);
+      text-decoration-line: none;
     }
 
     .continueExp {
       color: rgb(200,200,200);
+      color: black;
+      width: 200px;
+      text-align: center;
+      padding: 5px;
+      margin: 0 auto;
       text-decoration: none;
     }
 
@@ -136,16 +139,16 @@ Saving data...
 -->
 
 <!-- make instruction -->
-<div id="instructions">
-  <h2> GO! NOGO! 
-    <br>เกมวัดความว่องไวและความแม่นยำในการตอบสนอง</h2>
-  <p>ต่อจากนี้จะมีวงกลมปรากฏขึ้นมา 
-  <br>ให้ท่าน <b>"กดลงบนปุ่ม"</b> เมื่อมี <b>สีเขียว</b> ปรากฏขึ้นมา และ <b>"ห้ามกดปุ่ม"</b> โดยเด็ดขาดเมื่อมี <b>สีแดง</b> ปรากฏขึ้นมา</p>
-    
-  <p> ขอให้ท่านสำรวจสถานที่ที่ท่านอยู่ว่ามีสิ่งที่จะรบกวนสมาธิของท่านหรือไม่
-  <br>หากท่านอยู่ในสถานที่ที่พร้อมแล้ว
-  <br> กดปุ่ม <b>"เริ่ม"</b> เพื่อเข้าสู่การทดสอบ</p>
-</div>
+  <div id="instructions">
+    <h2> GO! NOGO! 
+      <br>เกมวัดความว่องไวและความแม่นยำในการตอบสนอง</h2>
+    <p>ต่อจากนี้จะมีวงกลมปรากฏขึ้นมา 
+    <br>ให้ท่าน <b>"กดลงบนปุ่ม"</b> เมื่อมี <b>สีเขียว</b> ปรากฏขึ้นมา และ <b>"ห้ามกดปุ่ม"</b> โดยเด็ดขาดเมื่อมี <b>สีแดง</b> ปรากฏขึ้นมา</p>
+      
+    <p> ขอให้ท่านสำรวจสถานที่ที่ท่านอยู่ว่ามีสิ่งที่จะรบกวนสมาธิของท่านหรือไม่
+    <br>หากท่านอยู่ในสถานที่ที่พร้อมแล้ว
+    <br> กดปุ่ม <b>"เริ่ม"</b> เพื่อเข้าสู่การทดสอบ</p>
+  </div>
   
   <div id="startExperimentButton">
     <a href="#" id="startExperiment">เริ่ม</a>
@@ -153,48 +156,47 @@ Saving data...
 
   <audio id="audio" src="click.mp3"></audio>
   <audio id="click" src="click.mp3"></audio>
-  
+
   <div id="consent">
     <p align="center"><b>UNIVERSITY OF CALIFORNIA, SAN DIEGO
-    <br>CONSENT TO ACT AS A RESEARCH SUBJECT</b>
-
-    <p>
-    <br> Timothy Brady, Ph.D., is conducting a research study to find out more about attention, memory and vision.  You have been asked to participate because you are a healthy young adult.  There will be approximately 1600 participants in this study this year. The expected duration of the study is 5 years, though your participation will last only between 3 minutes and 45 minutes, with the exact expected timing listed in the HIT description.</p>
-
-    <p>
-    <br><b>PROCEDURES.</b> If you agree to participate in this study by accepting this HIT and continuing in the task, the following will happen to you:
-    <br> &emsp; 1. You will be shown displays of letters, words, or pictures, right here in your web browser. 
-    <br> &emsp; 2. You will try to perceive and remember these stimuli, and respond by pressing keys or moving and clicking the mouse in a manner that we will describe to you.</p>
-
-    <p>
-    <br> <b>RISKS.</b> You will be required only to continue to interact with your web browser and make responses for a short duration. Thus, no potential risks or discomforts are anticipated except for the possibility that some tasks may be slightly boring. However, there may be risks that are currently unforeseeable.</p>
-
-    <p>
-    <br><b>PAYMENT/REMUNERATION.</b> In consideration of your time, you will receive payment at the rate described through the Amazon Mechanical Turk system. Compensation will range from $0.60 (for a 3 min task) up to as much as $8 (for a task that takes 45 min), with rates between $8/hr and $12/hr. The exact payment rate for this HIT is provided in the HIT description.</p>
-
-    <p>
-    <br><b>RIGHTS.</b> You may call the UCSD Human Research Protection Program at 858-657-5100 to ask about your rights as a research subject or to report research-related problems.</p>
-
-    <p>
-    <br><b>BENEFITS.</b>  There will be no direct benefit to you from these procedures.  However, the investigator may learn more about basic questions pertaining to attention, memory and vision.   This knowledge may have benefits to society in fields ranging from improving education to visual design, but these benefits will be indirect.</p>
-
-    <p>
-    <br><b>EXPLANATION.</b>  The researcher has explained this study to you and answered your questions.  If you have questions about the research or research-related problems, including any adverse events, you may reach Dr. Timothy Brady at timbrady@ucsd.edu or 858-822-4530.</p>
-
-    <p>
-    <br><b>VOLUNTARY NATURE OF PARTICIPATION.</b>  Participation in research is entirely voluntary.  You may refuse to participate or withdraw at any time without penalty. The alternative to participation is to choose not to participate.</p>
-
-    <p>
-    <br><b>CONFIDENTIALITY.</b>  Research records will be kept confidential to the extent allowed by law.  As with all research, there is also the possibility of loss of confidentiality.  Information from participants such as yourself will be identified by a subject number, which is not associated with your identity, by the researchers, to minimize the potential loss of confidentiality.</p> 
-
-    <p>
-    <br>By clicking “I agree”, you are indicating that you are at least 18 years old, have read this consent form and agree to participate in this research study. Please print a copy of this page for your records.</p>
-    </p>
+      <br>CONSENT TO ACT AS A RESEARCH SUBJECT</b>
+  
+      <p>
+      <br> Timothy Brady, Ph.D., is conducting a research study to find out more about attention, memory and vision.  You have been asked to participate because you are a healthy young adult.  There will be approximately 1600 participants in this study this year. The expected duration of the study is 5 years, though your participation will last only between 3 minutes and 45 minutes, with the exact expected timing listed in the HIT description.</p>
+  
+      <p>
+      <br><b>PROCEDURES.</b> If you agree to participate in this study by accepting this HIT and continuing in the task, the following will happen to you:
+      <br> &emsp; 1. You will be shown displays of letters, words, or pictures, right here in your web browser. 
+      <br> &emsp; 2. You will try to perceive and remember these stimuli, and respond by pressing keys or moving and clicking the mouse in a manner that we will describe to you.</p>
+  
+      <p>
+      <br> <b>RISKS.</b> You will be required only to continue to interact with your web browser and make responses for a short duration. Thus, no potential risks or discomforts are anticipated except for the possibility that some tasks may be slightly boring. However, there may be risks that are currently unforeseeable.</p>
+  
+      <p>
+      <br><b>PAYMENT/REMUNERATION.</b> In consideration of your time, you will receive payment at the rate described through the Amazon Mechanical Turk system. Compensation will range from $0.60 (for a 3 min task) up to as much as $8 (for a task that takes 45 min), with rates between $8/hr and $12/hr. The exact payment rate for this HIT is provided in the HIT description.</p>
+  
+      <p>
+      <br><b>RIGHTS.</b> You may call the UCSD Human Research Protection Program at 858-657-5100 to ask about your rights as a research subject or to report research-related problems.</p>
+  
+      <p>
+      <br><b>BENEFITS.</b>  There will be no direct benefit to you from these procedures.  However, the investigator may learn more about basic questions pertaining to attention, memory and vision.   This knowledge may have benefits to society in fields ranging from improving education to visual design, but these benefits will be indirect.</p>
+  
+      <p>
+      <br><b>EXPLANATION.</b>  The researcher has explained this study to you and answered your questions.  If you have questions about the research or research-related problems, including any adverse events, you may reach Dr. Timothy Brady at timbrady@ucsd.edu or 858-822-4530.</p>
+  
+      <p>
+      <br><b>VOLUNTARY NATURE OF PARTICIPATION.</b>  Participation in research is entirely voluntary.  You may refuse to participate or withdraw at any time without penalty. The alternative to participation is to choose not to participate.</p>
+  
+      <p>
+      <br><b>CONFIDENTIALITY.</b>  Research records will be kept confidential to the extent allowed by law.  As with all research, there is also the possibility of loss of confidentiality.  Information from participants such as yourself will be identified by a subject number, which is not associated with your identity, by the researchers, to minimize the potential loss of confidentiality.</p> 
+  
+      <p>
+      <br>By clicking “I agree”, you are indicating that you are at least 18 years old, have read this consent form and agree to participate in this research study. Please print a copy of this page for your records.</p>
+      </p>
   </div>
-</div>
-
+  
 <div align="center">
-  <canvas id="myCanvas"  width="400" height="400" style="cursor:default;border:none;outline-width:2px;outline-color:#000000">
+  <canvas id="myCanvas"  width="400" height="400">
     </canvas>
     <p id="instr"></p>
 </div>
@@ -316,11 +318,11 @@ Saving data...
     var realstimtime =[]; 
     // var realdelaytime =[];
 
-    var nsec = 300;        // duration sec เวลาทั้งหมดในการเล่น (s)
-    var blockDur = 1.5;     // sec เข้าใจว่าระยะห่างของเวลาการปิ้งแว้บขึ้นของแต่ละตัว (ยิ่งเยอะตัวปิ้งแว้บยิ่งน้อย)
+    var nsec = 180;        // duration sec เวลาทั้งหมดในการเล่น (s)
+    var blockDur = 3;     // sec เข้าใจว่าระยะห่างของเวลาการปิ้งแว้บขึ้นของแต่ละตัว (ยิ่งเยอะตัวปิ้งแว้บยิ่งน้อย)
     var changeRate = 0.75; // % changes 
     var nogoRate = 0.25;   // % nogo 
-    var dur = 200;        // stay up for ... msec เวลาที่ปิ๊งแว้บขึ้นมา (ms)
+    var dur = 700;        // stay up for ... msec เวลาที่ปิ๊งแว้บขึ้นมา (ms)
     var nBlock = Math.round(nsec/blockDur);  // number of blocks จำนวนการปิ้งแว้บทั้งหมด
     var jitDur = blockDur*1000-dur;   // jitter duration ระยะเวลาในการกด?
     var nNogo = Math.round(nBlock*changeRate*nogoRate);
@@ -611,12 +613,12 @@ Saving data...
     function showPractice_f1(){
         if ($(window).width() >= 600 && screen.width*0.8 < $(window).width()){
             $('#instructions').hide();
+            $('#consent').hide();
             myCanvas.style.border = 'solid' 
               // Draw first button
             makeButton(buttonColors[0],buttonShadow[0]);
             drawObjects(ctx1,objects);
             $('#startExperimentButton').hide();
-            $('#consent').hide();
             $('#frame1').show();
             // Begin
             $('#cont1').on('click',pressed);
