@@ -319,7 +319,7 @@ Saving data...
     // var realdelaytime =[];
 
     var nsec = 180;        // duration sec เวลาทั้งหมดในการเล่น (s)
-    var blockDur = 3;     // sec เข้าใจว่าระยะห่างของเวลาการปิ้งแว้บขึ้นของแต่ละตัว (ยิ่งเยอะตัวปิ้งแว้บยิ่งน้อย)
+    var blockDur = 2;     // sec เข้าใจว่าระยะห่างของเวลาการปิ้งแว้บขึ้นของแต่ละตัว (ยิ่งเยอะตัวปิ้งแว้บยิ่งน้อย)
     var changeRate = 0.75; // % changes 
     var nogoRate = 0.25;   // % nogo 
     var dur = 700;        // stay up for ... msec เวลาที่ปิ๊งแว้บขึ้นมา (ms)
@@ -452,7 +452,7 @@ Saving data...
           //erase(objects);
           for (iSeq = 0;iSeq < nBlock; iSeq++){  
           // beGone(timeJit[iSeq]);
-          beGone(dur);
+          beGone(100);
         }
       // },)
     }
